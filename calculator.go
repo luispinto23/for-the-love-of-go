@@ -19,3 +19,9 @@ func Subtract(a, b float64) float64 {
 func Multiply(a, b float64) float64 {
 	return a * b
 }
+
+// Divide takes two numbers a and b, and returns the result
+// of dividing a by b.
+func Divide(a, b float64) (float64, error) {
+	return a / b, nil
+}
