@@ -32,7 +32,7 @@ func TestDivide(t *testing.T) {
 	}
 	testCases := []testCase{
 		{a: 2, b: 2, want: 1},
-		{a: -1, b: -1, want: -1},
+		{a: -1, b: -1, want: 1},
 		{a: 10, b: 2, want: 5},
 	}
 	for _, tc := range testCases {
@@ -43,6 +43,36 @@ func TestDivide(t *testing.T) {
 		if tc.want != got {
 			t.Errorf("Divide(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
 		}
+	}
+}
+
+// test divide by zero
+func TestDivideInvalid(t *testing.T) {
+	type args struct {
+		a float64
+		b float64
+	}
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{
+			name: "divide by zero",
+			args: args{a: 1, b: 0},
+			want: 0,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := calculator.Divide(tt.args.a, tt.args.b)
+			if got != tt.want {
+				t.Errorf("Divide() = %v, want %v", got, tt.want)
+			}
+			if err == nil {
+				t.Error("Divide(), want error for invalid input, got nil")
+			}
+		})
 	}
 }
 
