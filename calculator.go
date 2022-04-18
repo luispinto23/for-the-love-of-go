@@ -2,7 +2,10 @@
 // simple calculations in Go.
 package calculator
 
-import "errors"
+import (
+	"errors"
+	"math"
+)
 
 // Add takes two numbers and returns the
 // result of adding them together.
@@ -29,4 +32,13 @@ func Divide(a, b float64) (float64, error) {
 		return 0, errors.New("cannot divide by zero")
 	}
 	return a / b, nil
+}
+
+// Sqrt takes a number a and returns the result
+// of squaring it.
+func Sqrt(a float64) (float64, error) {
+	if a < 0 {
+		return 0, errors.New("cannot take square root of negative number")
+	}
+	return math.Sqrt(a), nil
 }

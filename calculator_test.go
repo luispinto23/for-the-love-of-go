@@ -118,3 +118,30 @@ func TestMultiply(t *testing.T) {
 		})
 	}
 }
+
+func TestSqrt(t *testing.T) {
+	type args struct {
+		a float64
+		b float64
+	}
+
+	tests := []struct {
+		name string
+		args args
+		want float64
+	}{
+		{name: "sqrt(4)", args: args{a: 4}, want: 2},
+		{name: "sqrt(9)", args: args{a: 9}, want: 3},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := calculator.Sqrt(tt.args.a)
+			if got != tt.want {
+				t.Errorf("Sqrt() = %v, want %v", got, tt.want)
+			}
+			if err != nil {
+				t.Errorf("Sqrt() = %v, want %v", err, nil)
+			}
+		})
+	}
+}
